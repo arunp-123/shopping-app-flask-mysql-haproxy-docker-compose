@@ -58,13 +58,14 @@ services:
     depends_on:
       - database
 
-  shopping-haproxy:
-    image: arun1278/shopping-haproxy:v1
-    container_name: haproxy
+  shopping-proxy:
+    image: arun1278/shopping-proxy:v1
+    container_name: shopping-proxy
     restart: always
     networks:
       - shopping_network
     ports:
+      - "80:80"
       - "443:443"
     depends_on:
       - shopping-application-1
@@ -77,4 +78,3 @@ networks:
 
 volumes:
   mysql_volume:
-
